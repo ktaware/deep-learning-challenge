@@ -149,13 +149,14 @@ Data Processing
 To clean the data I removed the EIN and NAME columns since they have no value to the model.
 The varibales being considered for my model are as follows: 'STATUS', 'ASK_AMT', 'IS_SUCCESSFUL', 'APPLICATION_TYPE', 'CLASSIFICATION', 'USE_CASE', 'ORGANIZATION', 'INCOME_AMT'. I dropped "USE_CASE_Other","AFFILIATION_Other" columns.
 My Dependent varible is "IS_SUCCESFUL" since we want to try to predict this with high accuracy.
-Compiling, Training, and Evaluating the Model Attempt #1
+Compiling, Training, and Evaluating the Model 
+Attempt #1
 
 2 Hidden Layers
 80 neurons (Layer1), 30 neurons(Layer2)
 Used Relu and Sigmoid Activations Functions since sigmoid is best for binary classifcation problems as this and relu is for nonlinear datasets.
 Removed "USE_CASE_Other","AFFILIATION_Other" columns.
-Screen Shot 2020-11-22 at 6 11 13 PM
+
 
 Attempt #2
 
@@ -163,7 +164,7 @@ Attempt #2
 80 neurons (Layer1), 30 neurons(Layer2), 15 neurons(Layer3)
 Used Relu and Sigmoid Activations Functions since sigmoid is best for binary classifcation problems as this and relu is for nonlinear datasets.
 Removed "USE_CASE_Other","AFFILIATION_Other" columns.
-Screen Shot 2020-11-22 at 5 37 49 PM
+
 
 Attempt #3
 
@@ -171,7 +172,7 @@ Attempt #3
 80 neurons(Layer1), 35 neurons(Layer2), 10 neurons (Layer3)
 Used Relu and Sigmoid Activations Functions since sigmoid is best for binary classifcation problems as this and relu is for nonlinear datasets.
 Went back to original dataset
-Screen Shot 2020-11-22 at 6 08 54 PM
+
 
 Attempt #4
 
