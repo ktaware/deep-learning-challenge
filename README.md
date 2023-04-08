@@ -17,164 +17,119 @@ ASK_AMT—Funding amount requested.
 IS_SUCCESSFUL—Was the money used effectively,
 
 
-## Instructions
-# Step 1: Preprocess the Data
-Using your knowledge of Pandas and scikit-learn’s StandardScaler(), you’ll need to preprocess the dataset. This step prepares you for Step 2, where you'll compile, train, and evaluate the neural network model.
-
-Start by uploading the starter file to Google Colab, then using the information we provided in the Challenge files, follow the instructions to complete the preprocessing steps.
-
-Read in the charity_data.csv to a Pandas DataFrame, and be sure to identify the following in your dataset:
-What variable(s) are the target(s) for your model?
-What variable(s) are the feature(s) for your model?
-Drop the EIN and NAME columns.
-
-Determine the number of unique values for each column.
-
-For columns that have more than 10 unique values, determine the number of data points for each unique value.
-
-Use the number of data points for each unique value to pick a cutoff point to bin "rare" categorical variables together in a new value, Other, and then check if the binning was successful.
-
-Use pd.get_dummies() to encode categorical variables.
-
-Split the preprocessed data into a features array, X, and a target array, y. Use these arrays and the train_test_split function to split the data into training and testing datasets.
-
-Scale the training and testing features datasets by creating a StandardScaler instance, fitting it to the training data, then using the transform function.
-
-# Step 2: Compile, Train, and Evaluate the Model
-Using your knowledge of TensorFlow, you’ll design a neural network, or deep learning model, to create a binary classification model that can predict if an Alphabet Soup-funded organization will be successful based on the features in the dataset. You’ll need to think about how many inputs there are before determining the number of neurons and layers in your model. Once you’ve completed that step, you’ll compile, train, and evaluate your binary classification model to calculate the model’s loss and accuracy.
-
-Continue using the file in Google Colab in which you performed the preprocessing steps from Step 1.
-
-Create a neural network model by assigning the number of input features and nodes for each layer using TensorFlow and Keras.
-
-Create the first hidden layer and choose an appropriate activation function.
-
-If necessary, add a second hidden layer with an appropriate activation function.
-
-Create an output layer with an appropriate activation function.
-
-Check the structure of the model.
-
-Compile and train the model.
-
-Create a callback that saves the model's weights every five epochs.
-
-Evaluate the model using the test data to determine the loss and accuracy.
-
-Save and export your results to an HDF5 file. Name the file AlphabetSoupCharity.h5.
-
-# Step 3: Optimize the Model
-Using your knowledge of TensorFlow, optimize your model to achieve a target predictive accuracy higher than 75%.
-
-Use any or all of the following methods to optimize your model:
-
-Adjust the input data to ensure that no variables or outliers are causing confusion in the model, such as:
-Dropping more or fewer columns.
-Creating more bins for rare occurrences in columns.
-Increasing or decreasing the number of values for each bin.
-Add more neurons to a hidden layer.
-Add more hidden layers.
-Use different activation functions for the hidden layers.
-Add or reduce the number of epochs to the training regimen.
-Note: If you make at least three attempts at optimizing your model, you will not lose points if your model does not achieve target performance.
-
-Create a new Google Colab file and name it AlphabetSoupCharity_Optimization.ipynb.
-
-Import your dependencies and read in the charity_data.csv to a Pandas DataFrame.
-
-Preprocess the dataset as you did in Step 1. Be sure to adjust for any modifications that came out of optimizing the model.
-
-Design a neural network model, and be sure to adjust for modifications that will optimize the model to achieve higher than 75% accuracy.
-
-Save and export your results to an HDF5 file. Name the file AlphabetSoupCharity_Optimization.h5.
-
-# Step 4: Write a Report on the Neural Network Model
-For this part of the assignment, you’ll write a report on the performance of the deep learning model you created for Alphabet Soup.
-
-The report should contain the following:
-
-Overview of the analysis: Explain the purpose of this analysis.
-
-Results: Using bulleted lists and images to support your answers, address the following questions:
-
-# Data Preprocessing
+Step 1: The Preprocessing
+After loading and conducting an initial review of the charity_data.csv, identifying the features and target became the first step to complete. As noted above, in this case the IS_SUCCESSFUL column was deemed to be our target. The EIN and NAME columns were considered to be extraneous information and columns that we could remove from the dataset by way of the .drop function. The remaining columns were then designated as our features.
 
 What variable(s) are the target(s) for your model?
+IS_SUCCESSFUL
+
 What variable(s) are the features for your model?
+APPLICATION_TYPE
+AFFILIATION
+CLASSIFICATION
+USE_CASE
+ORGANIZATION
+STATUS
+INCOME_AMT
+SPECIAL_CONSIDERATIONS
+ASK_AMT
+
 What variable(s) should be removed from the input data because they are neither targets nor features?
-Compiling, Training, and Evaluating the Model
+EIN and NAME
+
+Once identified and the extraneous columns dropped, the remaining columns were further cleaned by determining the number of unique values for each through the use of the .nunique() function and binning outlier values for certain columns into catchall bins labelled "Other". In this case, this was achieved by way of applying .value_counts on the APPLICATION_TYPE and CLASSIFICATION columns and creating respective cut off values for each (<500 and <300) where the value would be replaced with the "Other" designation by way of the .replace function.
+
+Upon confirming the Dtypes with .info(), we next created a categorical variable list of columns which were converted and encoded using the pd.get_dummies function. The resultant encoded_df was then merged with the original application_df, dropping the original column values in the process.
+
+With our data now cleaned, it was seperated into X and y based on our features and target designations. It was next split into training (X_train, y_train) and testing (X_test, y_test) datasets using the train_test_split function. StandardScaler() variables were instantiated and the X_train data was fit to the scaler and then scaled concurrently but seperate from the X_test data using the .transform function.
+
+
+
+Step 2: The Deep Learningtep 2: The Deep Learning
+A model (nn) was now defined as well as its number of input features (44) and the number of hidden nodes (8 and 5) for each layer as well as their respective activiation functions (ReLu, sigmoid). A model .summary() was returned indicating 411 trainable parameters would be applied. The model was then compiled and a callback log initiated to record the model's weights at certain intervals. Finally, the model was fit and trained using the dataset for a duration of 30 epochs. The .evaluate function revealed a loss of 55.7% (0.5574) and accuracy score of 72.9% (0.7292).
+
+
+
+Step 3: The Optimization
+While our original model did a respectable job given the challenge, Alphabet Soup now asked us to attempt to reach a new goal of a predictive accuracy higher than 75%. To achieve this, we sought to optimize the model and document the following:
 
 How many neurons, layers, and activation functions did you select for your neural network model, and why?
 Were you able to achieve the target model performance?
 What steps did you take in your attempts to increase model performance?
-Summary: Summarize the overall results of the deep learning model. Include a recommendation for how a different model could solve this classification problem, and then explain your recommendation.
+
+Attempt 1: Optimization A:
+
+The nnopt_a again used 44 input features, but we thought trying a more robust model might yield improved results. As such, two more hidden layers were added bringing the total to 4. We also increased the number of neurons per layer to 22, 17, 33 and 11 respectively (ReLu remained the activation function throughout the hidden layers). The summary revealed 2,361 total trainable parameters with this model which would be run on an increased 50 epochs this time. The resulting evaluation indicated we'd been able to improve the accuracy to 72.9% (0.7290) and reduce the loss to 55.6% (0.5557).
+
+Attempt 2: Optimization B:
+
+The nnopt_b model again used 44 input features. Based on the improvement of nnopt_a over our original model, we thought we'd try a similar approach of increased complexity across the board. Another two hidden layers were added, bringing the total to 6. We also again increased the number of neurons per layer to 33, 22, 33, 11, 6, and 18 respectively (TanH was applied to the first three hidden layers this time instead and ReLu to the latter 3). The summary revealed 3,583 total trainable parameters. We also again increased the epochs to 200. The resulting evaluation indicated we'd been again able to improve the accuracy, this time to 73.1% (0.7307). The loss was returned as 57% (0.5698).
+
+Attempt 3: Optimization C:
+
+Our final optimization model, nnopt_c, again used the 44 input features. While nnopt_b did improve over nnopt_a, the change was minor. We thought we'd try less layers this time and change the neurons to hopefully finetune it and find a middle ground as greater complexity does not necesarily always equate to a better model. A hidden layer was removed, reducing the total to 5. The number of neurons per layer this time were 32, 16, 48, 12, and 6 respectively (ReLu was applied for all five layers in this model). The summary revealed a slightly lower total of trainable parameters at 3,457. They would again be tested at 200 epochs. The resulting evaluation indicated we'd gone backward in both accuracy, achieving 73% (0.7298), and loss with 58.6% (0.5856).
 
 
-# Requirements
-Preprocess the Data 
-Create a dataframe containing the charity_data.csv data , and identify the target and feature variables in the dataset 
-Drop the EIN and NAME columns 
-Determine the number of unique values in each column 
-For columns with more than 10 unique values, determine the number of data points for each unique value 
-Create a new value called Other that contains rare categorical variables 
-Create a feature array, X, and a target array, y by using the preprocessed data 
-Split the preprocessed data into training and testing datasets 
-Scale the data by using a StandardScaler that has been fitted to the training data 
-Compile, Train and Evaluate the Model 
-Create a neural network model with a defined number of input features and nodes for each layer 
-Create hidden layers and an output layer with appropriate activation functions 
-Check the structure of the model 
-Compile and train the model 
-Evaluate the model using the test data to determine the loss and accuracy 
-Export your results to an HDF5 file named AlphabetSoupCharity.h5 
-Optimize the Model 
-Repeat the preprocessing steps in a new Jupyter notebook 
-Create a new neural network model, implementing at least 3 model optimization methods 
-Save and export your results to an HDF5 file named AlphabetSoupCharity_Optimization.h5 
-Write a Report on the Neural Network Model 
-Write an analysis that includes a title and multiple sections, labeled with headers and subheaders 
-Format images in the report so that they display correction 
-Explain the purpose of the analysis 
-Answer all 6 questions in the results section 
-Summarize the overall results of your model 
-Describe how you could use a different model to solve the same problem, and explain why you would use that model 
+The Results
+Deep Learning Model Scores:
+Model 1 (nn):
+Input Features: 44
+Hidden Layers: 2
+L1: 8 nodes, ReLu act
+L2: 5 nodes, ReLu act
+Accuracy Score: 72.9%
+Loss Score: 55.7%
+Original Model Accuracy Original Model Loss
 
+Model 2 (opta):
+Input Features: 44
+Hidden Layers: 4
+L1: 22 nodes, ReLu act
+L2: 17 nodes, ReLu act
+L3: 33 nodes, ReLu act
+L4: 11 nodes, ReLu act
+Trainable Paramaters: 2,361
+Accuracy Score: 72.9%
+Loss Score: 55.6%
+Optimized Model A Accuracy Optimized Model A Loss
 
-# References
-IRS. Tax Exempt Organization Search Bulk Data Downloads. https://www.irs.gov/Links to an external site.
+Model 3 (optb):
+Input Features: 44
+Hidden Layers: 6
+L1: 33 nodes, TanH act
+L2: 22 nodes, TanH act
+L3: 33 nodes, TanH act
+L4: 11 nodes, ReLu act
+L5: 6 nodes, ReLu act
+L6: 18 nodes, ReLu act
+Trainable Paramaters: 3,583
+Accuracy Score: 73.1%
+Loss Score: 57%
+Optimized Model B Accuracy Optimized Model B Loss
 
-## Results
-Data Processing
+Model 4 (optc):
+Input Features: 44
+Hidden Layers: 5
+L1: 32 nodes, ReLu act
+L2: 16 nodes, ReLu act
+L3: 48 nodes, ReLu act
+L4: 12 nodes, ReLu act
+L5: 6 nodes, ReLu act
+Trainable Paramaters: 3,457
+Accuracy Score: 73%
+Loss Score: 58.5%
+Optimized Model C Accuracy Optimized Model C Loss
 
-To clean the data I removed the EIN and NAME columns since they have no value to the model.
-The varibales being considered for my model are as follows: 'STATUS', 'ASK_AMT', 'IS_SUCCESSFUL', 'APPLICATION_TYPE', 'CLASSIFICATION', 'USE_CASE', 'ORGANIZATION', 'INCOME_AMT'. I dropped "USE_CASE_Other","AFFILIATION_Other" columns.
-My Dependent varible is "IS_SUCCESFUL" since we want to try to predict this with high accuracy.
-Compiling, Training, and Evaluating the Model 
-Attempt #1
-
-2 Hidden Layers
-80 neurons (Layer1), 30 neurons(Layer2)
-Used Relu and Sigmoid Activations Functions since sigmoid is best for binary classifcation problems as this and relu is for nonlinear datasets.
-Removed "USE_CASE_Other","AFFILIATION_Other" columns.
-
-
-Attempt #2
-
-3 Hidden Layers
-80 neurons (Layer1), 35 neurons(Layer2), 15 neurons(Layer3)
-Used Relu and Sigmoid Activations Functions since sigmoid is best for binary classifcation problems as this and relu is for nonlinear datasets.
-Removed "USE_CASE_Other","AFFILIATION_Other" columns.
-
-
-Attempt #3
-
-3 Hidden Layers
-80 neurons(Layer1), 60 neurons(Layer2), 30 neurons (Layer3)
-Used Relu and Sigmoid Activations Functions since sigmoid is best for binary classifcation problems as this and relu is for nonlinear datasets.
-Went back to original dataset
-
-
-I tried to change my models in order to achieve a more than 75% accuracy rate but only got about 73%. I changed my features, activation functions, Hidden Layers, and the number of neurons in order to achieve this. But if one where to get this result it would take longer than a more than expected so I am content with the results I got in one day.
 
 Summary
+Based on the original model as well as the three optimization models, it appears that the more robust the model applied ot this dataset, the better the performance turned out to be. In this case, it meant using model optb with 6 hidden layers having 33, 22, 33, 11, 6, and 18 neurons respectively activated by a mix of TanH and ReLu for a longer duration of 200 epochs. There were a total of 3586 trainable parameters with this model.
+
+However, the gains from the original model to even the best of these optimised models were negligible despite increasing the number of trainable paramaters exponentially. This suggests that there is a likely a far more effective model or setup than the ones tested here. Perhaps reducing or increasing the values for each bin or including fewer columns/features in the models training, or a combination of all of the above would have yielded the desired outcome.
+
+It should be noted though that keras_tuner was also used to taid in the search for he best hyperparamters in regard to this challenge and after over 200 trials, the best val_accuracy score was returned at around 73%. Overall then, it seems the target of an above 75% accuracy rate is indeed a difficult ask and given the subject of the dataset we were trying to create a predictive model from, this is not all that surprising.
+
+Ultimately, a greater allotment of resources in terms of time taken to test other optimization models and setups of the data would be the route most strongly recommended in this case. Barring that, the optb model was the best of what was actually tested to date.
+
+
+
 On Average my models kept around 73% accuracy score which is decent considering it was an improvement. My recommendation to improve this model would be to find better features to help explain what determines "IS_SUCCESFUL" such as more indepth knowledge of the other associates/ firms being funded. At the end of the day, knowledge is power and if we had more indepth data between all these applications, we can create a better model.
