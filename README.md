@@ -77,11 +77,17 @@ Deep Learning Model Scores:
 Model 1 (nn):
 Input Features: 44
 Hidden Layers: 3
+<br>
 L1: 80 nodes, ReLu act
+<br>
 L2: 60 nodes, ReLu act
+<br>
 L3: 30 nodes, ReLu act
+<br>
 Accuracy Score: 72.66%
+<br>
 Loss Score: 55.4%
+<br>
 Original Model Accuracy Original Model Loss
 
 Model 2 (opta):
@@ -89,37 +95,59 @@ Input Features: 44
 Hidden Layers: 4
 <br>
 L1: 33 nodes, ReLu act
+<br>
 L2: 17 nodes, ReLu act
+<br>
 L3: 33 nodes, ReLu act
+<br>
 L4: 11 nodes, ReLu act
+<br>
 Trainable Paramaters: 2,339
-Accuracy Score: 72.54%
+<br>
+Accuracy Score: 72.54%, 
+<br>
 Loss Score: 55.75%
 Optimized Model A Accuracy Optimized Model A Loss
 
 Model 3 (optb):
 Input Features: 44
 Hidden Layers: 5
+<br>
 L1: 33 nodes, ReLu act
+<br>
 L2: 22 nodes, ReLu act
+<br>
 L3: 33 nodes, ReLu act
+<br>
 L4: 11 nodes, TanH act
+<br>
 L5: 18 nodes, TanH act
+<br>
 Trainable Paramaters: 5,237
+<br>
 Accuracy Score: 72.57%
+<br>
 Loss Score: 55.73%
 Optimized Model B Accuracy Optimized Model B Loss
 
 Model 4 (optc):
 Input Features: 44
 Hidden Layers: 5
+<br>
 L1: 60 nodes, ReLu act
+<br>
 L2: 30 nodes, ReLu act
+<br>
 L3: 20 nodes, Sigmoid act
+<br>
 L4: 10 nodes, Sigmoid act
+<br>
 L5: 5 nodes, Sigmoid act
+<br>
 Trainable Paramaters: 5,951
+<br>
 Accuracy Score: 72.61%
+<br>
 Loss Score: 55.50%
 Optimized Model C Accuracy Optimized Model C Loss
 
