@@ -76,9 +76,7 @@ Our final optimization model, nnopt_c, again used the 44 input features. While n
 Deep Learning Model Scores:
 Model 1 (nn):
 Input Features: 44
-
 Hidden Layers: 3
-
 L1: 80 nodes, ReLu act
 L2: 60 nodes, ReLu act
 L3: 30 nodes, ReLu act
