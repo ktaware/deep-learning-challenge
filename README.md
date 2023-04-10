@@ -59,70 +59,72 @@ What steps did you take in your attempts to increase model performance?
 
 Attempt 1: Optimization A:
 
-The nnopt_a again used 44 input features, but we thought trying a more robust model might yield improved results. As such, two more hidden layers were added bringing the total to 4. We also increased the number of neurons per layer to 22, 17, 33 and 11 respectively (ReLu remained the activation function throughout the hidden layers). The summary revealed 2,361 total trainable parameters with this model which would be run on an increased 50 epochs this time. The resulting evaluation indicated we'd been able to improve the accuracy to 72.9% (0.7290) and reduce the loss to 55.6% (0.5557).
+The nnopt_a again used 44 input features, but we thought trying a more robust model might yield improved results. As such, two more hidden layers were added bringing the total to 3. We also increased the number of neurons per layer to 80,60 and 30 respectively (ReLu remained the activation function throughout the hidden layers). The summary revealed 10,241 total trainable parameters with this model which would be run on an increased 70 epochs this time. The resulting evaluation indicated we'd been able to improve the accuracy to 72.66% (0.7266) and reduce the loss to 55.4% (0.5540).
 
 Attempt 2: Optimization B:
 
-The nnopt_b model again used 44 input features. Based on the improvement of nnopt_a over our original model, we thought we'd try a similar approach of increased complexity across the board. Another two hidden layers were added, bringing the total to 6. We also again increased the number of neurons per layer to 33, 22, 33, 11, 6, and 18 respectively (TanH was applied to the first three hidden layers this time instead and ReLu to the latter 3). The summary revealed 3,583 total trainable parameters. We also again increased the epochs to 200. The resulting evaluation indicated we'd been again able to improve the accuracy, this time to 73.1% (0.7307). The loss was returned as 57% (0.5698).
+The nnopt_b model again used 44 input features. Based on the improvement of nnopt_a over our original model, we thought we'd try a similar approach of increased complexity across the board. Another one hidden layers were added, bringing the total to 4. We also again increased the number of neurons per layer to 33, 17, 33, 11 respectively (Relu was applied to the four hidden layers ). The summary revealed 2,339 total trainable parameters. We also again increased the epochs to 100. The resulting evaluation indicated we'd been again able to improve the accuracy, this time to 72.54% (0.7254). The loss was returned as 56% (0.5575).
 
 Attempt 3: Optimization C:
 
-Our final optimization model, nnopt_c, again used the 44 input features. While nnopt_b did improve over nnopt_a, the change was minor. We thought we'd try less layers this time and change the neurons to hopefully finetune it and find a middle ground as greater complexity does not necesarily always equate to a better model. A hidden layer was removed, reducing the total to 5. The number of neurons per layer this time were 32, 16, 48, 12, and 6 respectively (ReLu was applied for all five layers in this model). The summary revealed a slightly lower total of trainable parameters at 3,457. They would again be tested at 200 epochs. The resulting evaluation indicated we'd gone backward in both accuracy, achieving 73% (0.7298), and loss with 58.6% (0.5856).
+nnopt_c, again used the 44 input features. While nnopt_b did improve over nnopt_a, the change was minor. We thought we'd try more layers this time and change the neurons to hopefully finetune it and find a middle ground as greater complexity does not necesarily always equate to a better model. A hidden layer was removed, reducing the total to 5. The number of neurons per layer this time were 33, 22, 33, 11, 18 respectively (ReLu was applied for first 3 layers and 2 layers of tanh in this model). The summary revealed a slightly lower total of trainable parameters at 5,237. They would again be tested at 200 epochs. The resulting evaluation indicated we'd gone backward in both accuracy, achieving 72.60% (0.7257), and loss with 55.70% (0.5573).
 
+Attempt 4 :
+Our final optimization model, nnopt_c, again used the 44 input features. While nnopt_b did improve over nnopt_a, the change was minor. We thought we'd try less layers this time and change the neurons to hopefully finetune it and find a middle ground as greater complexity does not necesarily always equate to a better model. A hidden layer was removed, reducing the total to 2. The number of neurons per layer this time were 60, 30, 20, 10, 5 respectively (ReLu was applied for first 2 layers and 3 layers of sigmoid in this model). The summary revealed a slightly lower total of trainable parameters at 5,951. They would again be tested at 100 epochs. The resulting evaluation indicated we'd gone backward in both accuracy, achieving 72.61% (0.7261), and loss with 55.50% (0.5550).
 
 The Results
 Deep Learning Model Scores:
 Model 1 (nn):
 Input Features: 44
-Hidden Layers: 2
-L1: 8 nodes, ReLu act
-L2: 5 nodes, ReLu act
-Accuracy Score: 72.9%
-Loss Score: 55.7%
+Hidden Layers: 3
+L1: 80 nodes, ReLu act
+L2: 60 nodes, ReLu act
+L3: 30 nodes, ReLu act
+Accuracy Score: 72.66%
+Loss Score: 55.4%
 Original Model Accuracy Original Model Loss
 
 Model 2 (opta):
 Input Features: 44
 Hidden Layers: 4
-L1: 22 nodes, ReLu act
+L1: 33 nodes, ReLu act
 L2: 17 nodes, ReLu act
 L3: 33 nodes, ReLu act
 L4: 11 nodes, ReLu act
-Trainable Paramaters: 2,361
-Accuracy Score: 72.9%
-Loss Score: 55.6%
+Trainable Paramaters: 2,339
+Accuracy Score: 72.54%
+Loss Score: 55.75%
 Optimized Model A Accuracy Optimized Model A Loss
 
 Model 3 (optb):
 Input Features: 44
-Hidden Layers: 6
-L1: 33 nodes, TanH act
-L2: 22 nodes, TanH act
-L3: 33 nodes, TanH act
-L4: 11 nodes, ReLu act
-L5: 6 nodes, ReLu act
-L6: 18 nodes, ReLu act
-Trainable Paramaters: 3,583
-Accuracy Score: 73.1%
-Loss Score: 57%
+Hidden Layers: 5
+L1: 33 nodes, ReLu act
+L2: 22 nodes, ReLu act
+L3: 33 nodes, ReLu act
+L4: 11 nodes, TanH act
+L5: 18 nodes, TanH act
+Trainable Paramaters: 5,237
+Accuracy Score: 72.57%
+Loss Score: 55.73%
 Optimized Model B Accuracy Optimized Model B Loss
 
 Model 4 (optc):
 Input Features: 44
 Hidden Layers: 5
-L1: 32 nodes, ReLu act
-L2: 16 nodes, ReLu act
-L3: 48 nodes, ReLu act
-L4: 12 nodes, ReLu act
-L5: 6 nodes, ReLu act
-Trainable Paramaters: 3,457
-Accuracy Score: 73%
-Loss Score: 58.5%
+L1: 60 nodes, ReLu act
+L2: 30 nodes, ReLu act
+L3: 20 nodes, Sigmoid act
+L4: 10 nodes, Sigmoid act
+L5: 5 nodes, Sigmoid act
+Trainable Paramaters: 5,951
+Accuracy Score: 72.61%
+Loss Score: 55.50%
 Optimized Model C Accuracy Optimized Model C Loss
 
 
 Summary
-Based on the original model as well as the three optimization models, it appears that the more robust the model applied ot this dataset, the better the performance turned out to be. In this case, it meant using model optb with 6 hidden layers having 33, 22, 33, 11, 6, and 18 neurons respectively activated by a mix of TanH and ReLu for a longer duration of 200 epochs. There were a total of 3586 trainable parameters with this model.
+Based on the original model as well as the first optimization models, it appears that the more robust the model applied ot this dataset, the better the performance turned out to be. In this case, it meant using model optb with 3 hidden layers having 80, 60, 30 neurons respectively activated ReLu for a longer duration of 70 epochs. There were a total of 10,241 trainable parameters with this model.
 
 However, the gains from the original model to even the best of these optimised models were negligible despite increasing the number of trainable paramaters exponentially. This suggests that there is a likely a far more effective model or setup than the ones tested here. Perhaps reducing or increasing the values for each bin or including fewer columns/features in the models training, or a combination of all of the above would have yielded the desired outcome.
 
@@ -130,6 +132,5 @@ It should be noted though that keras_tuner was also used to taid in the search f
 
 Ultimately, a greater allotment of resources in terms of time taken to test other optimization models and setups of the data would be the route most strongly recommended in this case. Barring that, the optb model was the best of what was actually tested to date.
 
-
-
 On Average my models kept around 73% accuracy score which is decent considering it was an improvement. My recommendation to improve this model would be to find better features to help explain what determines "IS_SUCCESFUL" such as more indepth knowledge of the other associates/ firms being funded. At the end of the day, knowledge is power and if we had more indepth data between all these applications, we can create a better model.
+
