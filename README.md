@@ -87,6 +87,7 @@ Original Model Accuracy Original Model Loss
 Model 2 (opta):
 Input Features: 44
 Hidden Layers: 4
+<br>
 L1: 33 nodes, ReLu act
 L2: 17 nodes, ReLu act
 L3: 33 nodes, ReLu act
